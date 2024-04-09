@@ -1,4 +1,4 @@
-package com.allycode.tacos;
+package com.tacos;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

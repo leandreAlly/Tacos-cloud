@@ -1,4 +1,0 @@
-server:
-  port: 8080
-  main:
-    web-application-type: servlet

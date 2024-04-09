@@ -1,5 +1,6 @@
-package com.allycode.tacos;
+package com.tacos;
 
+import com.tacos.Ingredient;
 import lombok.Data;
 
 import java.util.List;
@@ -8,5 +9,5 @@ import java.util.List;
 public class Taco {
     private String name;
 
-    private List<Ingredients> ingredients;
+    private List<Ingredient> ingredients;
 }

@@ -1,5 +1,6 @@
-package com.allycode.tacos;
+package com.tacos;
 
+import com.tacos.Taco;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -15,10 +16,9 @@ public class TacoOrder {
     private String ccNumber;
     private String ccExpiration;
     private String ccCVV;
-
-    public List<Taco> tacos = new ArrayList<>();
-
-    public void addTaco(Taco taco){
+    private List<Taco> tacos = new ArrayList<>();
+    public void addTaco(Taco taco) {
         this.tacos.add(taco);
     }
 }
+
