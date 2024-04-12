@@ -47,14 +47,15 @@ public class DesignTacoController {
         return new Taco();
     }
     @GetMapping
-    public String showDesignForm() {
+    public String showDesignForm(Model model) {
+        model.addAttribute("taco", new Taco());
         return "design";
     }
 
 
     @PostMapping
-    public String processTaco(Taco taco, @ModelAttribute Order tacoOrder) {
-     tacoOrder.addTaco(taco);
+    public String processTaco(Taco taco, @ModelAttribute Order order) {
+     order.addTaco(taco);
      log.info("Processing taco: {}", taco);
 
      return "redirect:/orders/current";
