@@ -1,13 +1,12 @@
 package com.tacos;
 
-import com.tacos.Taco;
 import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Data
-public class TacoOrder {
+public class Order {
     private String deliveryName;
     private String deliveryStreet;
     private String deliveryCity;
