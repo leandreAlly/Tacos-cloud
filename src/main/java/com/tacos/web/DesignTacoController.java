@@ -2,8 +2,10 @@ package com.tacos.web;
 
 import com.tacos.Taco;
 import com.tacos.Order;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
@@ -54,7 +56,15 @@ public class DesignTacoController {
 
 
     @PostMapping
-    public String processTaco(Taco taco, @ModelAttribute Order order) {
+    public String processTaco(
+            @Valid Taco taco,
+            Errors errors,
+            @ModelAttribute Order order) {
+
+        if (errors.hasErrors()) {
+            return "design";
+        }
+
      order.addTaco(taco);
      log.info("Processing taco: {}", taco);
 

@@ -1,6 +1,6 @@
 package com.allycode.tacos;
 
-import com.tacos.HomeController;
+import com.tacos.web.HomeController;
 import org.springframework.boot.test.context.SpringBootTest;
 import static org.hamcrest.Matchers.containsString;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;

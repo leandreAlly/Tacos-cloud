@@ -2,9 +2,11 @@ package com.tacos.web;
 
 import com.tacos.Order;
 import com.tacos.Taco;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 
@@ -20,7 +22,14 @@ public class OrderController {
     }
 
     @PostMapping
-    public String processOrder(Order order, SessionStatus sessionStatus) {
+    public String processOrder(
+            @Valid Order order,
+            Errors errors,
+            SessionStatus sessionStatus) {
+        if (errors.hasErrors()) {
+            return "orderForm";
+        }
+
         log.info("Order submitted: {}" + order);
         sessionStatus.setComplete();
 
