@@ -6,13 +6,12 @@ import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 import org.hibernate.validator.constraints.CreditCardNumber;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Data
-public class Order implements Serializable {
+public class Order {
     private static final long serialVersionUID = 1L;
     private Long id;
     private Date placedAt;
@@ -42,8 +41,8 @@ public class Order implements Serializable {
     private String ccCVV;
 
     private List<Taco> tacos = new ArrayList<>();
-    public boolean addTaco(Taco taco) {
-       return this.tacos.add(taco);
+    public void addTaco(Taco taco) {
+       this.tacos.add(taco);
 
     }
 }

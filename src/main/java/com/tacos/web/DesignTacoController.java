@@ -1,7 +1,7 @@
 package com.tacos.web;
 
-import com.tacos.Taco;
 import com.tacos.Order;
+import com.tacos.Taco;
 import com.tacos.data.IngredientRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -30,15 +30,15 @@ public class DesignTacoController {
     public DesignTacoController(IngredientRepository ingredientRepo){
         this.ingredientRepo = ingredientRepo;
     }
-    @ModelAttribute
-    public void addIngredientsToModel(Model model) {
-        Iterable<Ingredient> ingredients = ingredientRepo.findAll();
-        Type[] types = Ingredient.Type.values();
-        for (Type type : types) {
-            model.addAttribute(type.toString().toLowerCase(),
-                    filterByType(ingredients, type));
-        }
-    }
+//    @ModelAttribute
+//    public void addIngredientsToModel(Model model) {
+//        Iterable<Ingredient> ingredients = ingredientRepo.findAll();
+//        Type[] types = Ingredient.Type.values();
+//        for (Type type : types) {
+//            model.addAttribute(type.toString().toLowerCase(),
+//                    filterByType(ingredients, type));
+//        }
+//    }
     @ModelAttribute(name = "order")
     public Order order() {
         return new Order();
@@ -49,7 +49,15 @@ public class DesignTacoController {
     }
     @GetMapping
     public String showDesignForm(Model model) {
-        model.addAttribute("taco", new Taco());
+        List<Ingredient> ingredients = new ArrayList<>();
+        ingredientRepo.findAll().forEach(ingredients::add);
+        Type[] types = Ingredient.Type.values();
+        for (Type type : types) {
+            model.addAttribute(type.toString().toLowerCase(),
+                    filterByType(ingredients, type));
+        }
+
+//        model.addAttribute("taco", new Taco());
         return "design";
     }
 
