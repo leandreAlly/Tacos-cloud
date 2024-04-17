@@ -26,19 +26,20 @@ import lombok.extern.slf4j.Slf4j;
 public class DesignTacoController {
     private final IngredientRepository ingredientRepo;
 
+
     @Autowired
     public DesignTacoController(IngredientRepository ingredientRepo){
         this.ingredientRepo = ingredientRepo;
     }
-//    @ModelAttribute
-//    public void addIngredientsToModel(Model model) {
-//        Iterable<Ingredient> ingredients = ingredientRepo.findAll();
-//        Type[] types = Ingredient.Type.values();
-//        for (Type type : types) {
-//            model.addAttribute(type.toString().toLowerCase(),
-//                    filterByType(ingredients, type));
-//        }
-//    }
+    @ModelAttribute
+    public void addIngredientsToModel(Model model) {
+        Iterable<Ingredient> ingredients = ingredientRepo.findAll();
+        Type[] types = Ingredient.Type.values();
+        for (Type type : types) {
+            model.addAttribute(type.toString().toLowerCase(),
+                    filterByType(ingredients, type));
+        }
+    }
     @ModelAttribute(name = "order")
     public Order order() {
         return new Order();
@@ -57,7 +58,7 @@ public class DesignTacoController {
                     filterByType(ingredients, type));
         }
 
-//        model.addAttribute("taco", new Taco());
+        model.addAttribute("taco", new Taco());
         return "design";
     }
 
