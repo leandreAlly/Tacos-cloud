@@ -7,10 +7,15 @@ import lombok.Data;
 import org.hibernate.validator.constraints.CreditCardNumber;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Data
 public class Order {
+    private static final long serialVersionUID = 1L;
+    private Long id;
+    private Date placedAt;
+
     @NotBlank(message = "delivery Name is required")
     private String deliveryName;
 
@@ -36,8 +41,8 @@ public class Order {
     private String ccCVV;
 
     private List<Taco> tacos = new ArrayList<>();
-    public boolean addTaco(Taco taco) {
-       return this.tacos.add(taco);
+    public void addTaco(Taco taco) {
+       this.tacos.add(taco);
 
     }
 }
