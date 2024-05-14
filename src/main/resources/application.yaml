@@ -4,12 +4,7 @@ server:
 spring:
   thymeleaf:
     cache: false
-  datasource:
-    url: jdbc:h2:mem:tacoCloud
-    username: sa
-    password: password
-    driverClassName: org.h2.Driver
-    jpa:
-      database-platform: org.hibernate.dialect.H2Dialect
-  h2:
-    console.enabled: true
+  cassandra:
+    keyspace-name: taco_cloud
+    schema-action: recreate
+    local-datacenter: datacenter1
